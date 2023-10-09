@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    ViewBag.Subtitulo = "Register item";
+}
+@model Item
+
+<h1 class="text-primary">@ViewBag.Subtitulo</h1>
+<hr>
+
+
+<partial name="_PartialMessage" />
+
+<form asp-action="Register">
+
+    <partial name="_Form"></partial>
+
+    <button class="btn btn-primary">Register</button>
+</form>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<IdentityUser>
+@{
+    ViewData["Title"] = "List";
+    ViewBag.Subtitulo = "User List";
+}
+
+<header class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1 class="text-primary">@ViewBag.Subtitulo</h1>
+    </div>
+    <div>
+        <a asp-action="Register" class="btn btn-primary">New user</a>
+    </div>
+</header>
+<hr>
+
+<partial name="_PartialMessage" />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">User name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr class="table-dark" r>
+                <td scope="row">@usuario.UserName</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.PhoneNumber</td>
+                <td>
+                    <a asp-action="Register" asp-route-id="@usuario.Id" class="btn btn-sm btn-secondary">
+                        <i class="bi-pencil" title="Edit"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@usuario.Id" class="btn btn-sm btn-danger">
+                        <i class="bi-trash"
+                            title="Delete"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
