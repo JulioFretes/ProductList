@@ -1,15 +1,17 @@
-
-using Microsoft.EntityFrameworkCore;
 using ProductList.DataBase;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//Recuperar a string de conexao do arquivo appsettings.json
+var conn = builder.Configuration.GetConnectionString("conexao");
+
 //Configurar o serviço de injeção de dependência do DbContext
-builder.Services.AddDbContext<ListContext>(op => op.UseSqlServer(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
+builder.Services.AddDbContext<ListContext>(op => op.UseSqlServer(conn));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ListContext>()
