@@ -25,6 +25,12 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
+      - name: Install EF Core tools
+        run: dotnet tool install --global dotnet-ef
+
+      - name: Run EF Core migrations
+        run: dotnet ef database update --project ${{ github.workspace }}\ProductList\ProductList.csproj --startup-project ${{ github.workspace }}\ProductList\ProductList.csproj --context ListContext
+
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
