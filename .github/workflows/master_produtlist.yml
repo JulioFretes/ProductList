@@ -46,7 +46,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     environment:
-      name: 'Development'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -60,6 +60,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'ProdutList'
-          slot-name: 'Development'
+          slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6ABDFBFD701E42CB9ECBB3284FB237E3 }}
           package: .
