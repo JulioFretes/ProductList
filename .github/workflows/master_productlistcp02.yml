@@ -25,13 +25,6 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-
-      - name: Install EF Core tools
-        run: dotnet tool install --global dotnet-ef
-
-      - name: Run EF Core migrations
-        run: dotnet ef database update --project ${{ github.workspace }}\ProductList\ProductList.csproj --startup-project ${{ github.workspace }}\ProductList\ProductList.csproj --context ListContext
-
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
@@ -60,5 +53,5 @@ jobs:
         with:
           app-name: 'ProductListCP02'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9F15AA07A1064ABB9D3E9DC955B3F639 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4FE5A68B957F45AF8952DA9CFEE9B498 }}
           package: .
