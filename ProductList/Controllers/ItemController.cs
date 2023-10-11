@@ -65,6 +65,7 @@ namespace ProductList.Controllers
         [HttpPost]
         public IActionResult Edit(Item item)
         {
+            item.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             _context.Item.Update(item);
             _context.SaveChanges();
